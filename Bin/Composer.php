@@ -35,23 +35,7 @@
  */
 
 namespace {
-    function tell($question, $default = null)
-    {
-        if ($default !== null) {
-            $question .= ' [' . $default . ']';
-        }
-        $question .= "\n" . '> ';
 
-        $cin = cin($question);
-        if (empty($cin)) {
-            if ($default !== null) {
-                return $default;
-            }
-
-            check('Isn\'t invalid information', false, true);
-        }
-        return $cin;
-    }
 
     from('Hoathis')
         ->import('Hawk.Scanner')
@@ -138,7 +122,7 @@ namespace Hoathis\Hawk\Bin {
         public function usage()
         {
 
-            cout('Usage   : core:welcome <options>');
+            cout('Usage   : hawk:composer <options>');
             cout('Options :');
             cout($this->makeUsageOptionsList(array(
                 'help' => 'This help.',

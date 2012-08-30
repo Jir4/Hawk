@@ -7,9 +7,28 @@
  * To change this template use File | Settings | File Templates.
  */
 namespace Hoathis\Hawk {
+    function tell($question, $default = null)
+    {
+        if ($default !== null) {
+            $question .= ' [' . $default . ']';
+        }
+        $question .= "\n" . '> ';
+
+        $cin = cin($question);
+        if (empty($cin)) {
+            if ($default !== null) {
+                return $default;
+            }
+
+            check('Isn\'t invalid information', false, true);
+        }
+        return $cin;
+    }
+
     /**
      *
      */
+
     class Composer
     {
         /**
