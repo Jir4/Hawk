@@ -38,8 +38,9 @@ namespace {
 
 
     from('Hoathis')
-        ->import('Hawk.Scanner')
-        ->import('Hawk.Composer');
+        ->import('Hawk.Composer.~')
+        ->import('Hawk.Composer.Scanner');
+
 }
 namespace Hoathis\Hawk\Bin {
 
@@ -103,10 +104,10 @@ namespace Hoathis\Hawk\Bin {
                 return;
             }
 
-            $scanner = new \Hoathis\Hawk\Scanner($path);
+            $scanner = new \Hoathis\Hawk\Composer\Scanner($path);
             $scanner->scan();
 
-            $composer = new \Hoathis\Hawk\Composer($scanner);
+            $composer = new \Hoathis\Hawk\Composer\Composer($scanner);
             $composer->setInteractive($interactive);
             $composer->generate();
 
