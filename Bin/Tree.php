@@ -1,7 +1,4 @@
 <?php
-
-
-
 namespace Hoathis\Hawk\Bin {
 
 
@@ -18,6 +15,10 @@ namespace Hoathis\Hawk\Bin {
 
         public function main()
         {
+
+            $registry = \Hoa\Registry\Registry::set('foo', $this);
+
+            var_dump(resolve('hoa://Library/Registry#foo'));
 
             while (false !== $c = $this->getOption($v)) switch ($c) {
 
@@ -61,7 +62,7 @@ namespace Hoathis\Hawk\Bin {
                     resolve($current)
                 );
                 if ($it instanceof \Hoa\Core\Protocol) {
-                    $this->_recursiveExtract($it, $current , $lvl);
+                    $this->_recursiveExtract($it, $current, $lvl);
                 }
 
             }
