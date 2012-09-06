@@ -42,29 +42,32 @@ namespace Hoathis\Hawk\Bin {
             $protocol = \Hoa\Core\Core::getProtocol();
 
 
-            $this->_recursiveExtract($protocol->getIterator());
+            $this->_recursiveExtract($protocol);
 
 
             cout(\Hoa\Console\Chrome\Text::columnize($this->_extractmapping));
             return;
         }
 
-        private function _recursiveExtract($iterator, $parent = 'hoa://')
+        private function _recursiveExtract($iterator, $parent = 'hoa://', $lvl = -1)
         {
+            ++$lvl;
             foreach ($iterator as $name => $it) {
 
                 $current = $parent . $name . '/';
 
                 $this->_extractmapping[] = array(
-                    $current,
+                    str_repeat('  ', $lvl) . $name,
                     resolve($current)
                 );
                 if ($it instanceof \Hoa\Core\Protocol) {
-                    $this->_recursiveExtract($it->getIterator(), $current);
+                    $this->_recursiveExtract($it, $current , $lvl);
                 }
+
             }
 
         }
+
         public function usage()
         {
 
